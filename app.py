@@ -201,7 +201,7 @@ if page == "Home":
     fig_pie = px.pie(segment_counts, values='Count', names='Segment', title='Buyer Segments Distribution',
                       hole=0.4, color_discrete_sequence=px.colors.qualitative.Set3)
     fig_pie.update_traces(textposition='inside', textinfo='percent+label')
-    st.plotly_chart(fig_pie, use_container_width=True)
+    st.plotly_chart(fig_pie, width='stretch')
     
     st.markdown(f"""
     <div class="success-box">
@@ -225,13 +225,13 @@ elif page == "Analysis":
         fig_inertia = px.line(x=results['K_range'], y=results['inertias'],
                               labels={'x': 'Number of Clusters (k)', 'y': 'Inertia'}, title='Elbow Method')
         fig_inertia.update_traces(mode='lines+markers', line_color='#1f77b4')
-        st.plotly_chart(fig_inertia, use_container_width=True)
+        st.plotly_chart(fig_inertia, width='stretch')
     
     with col2:
         fig_silhouette = px.line(x=results['K_range'], y=results['silhouettes'],
                                  labels={'x': 'Number of Clusters (k)', 'y': 'Silhouette Score'}, title='Silhouette Score')
         fig_silhouette.update_traces(mode='lines+markers', line_color='#2ca02c')
-        st.plotly_chart(fig_silhouette, use_container_width=True)
+        st.plotly_chart(fig_silhouette, width='stretch')
     
     st.info(f"Optimal number of clusters: **{results['optimal_k']}** (based on highest silhouette score)")
     
@@ -256,7 +256,7 @@ elif page == "Analysis":
     
     fig_pca = px.scatter(df_viz, x='PC1', y='PC2', color='Cluster',
                           title=f'K-Means Clustering (PCA)', color_continuous_scale='Viridis')
-    st.plotly_chart(fig_pca, use_container_width=True)
+    st.plotly_chart(fig_pca, width='stretch')
     
     st.markdown("---")
     
@@ -268,7 +268,7 @@ elif page == "Analysis":
     }).round(2)
     
     cluster_profiles.columns = ['Count', 'Avg Age', 'Avg Income', 'Avg Property', 'Avg Satisfaction', 'Avg Horizon', 'Avg Prior']
-    st.dataframe(cluster_profiles.style.background_gradient(cmap='Blues'), use_container_width=True)
+    st.dataframe(cluster_profiles.style.background_gradient(cmap='Blues'), width='stretch')
 
 
 # ===================== DASHBOARD PAGE =====================
@@ -317,13 +317,13 @@ elif page == "Dashboard":
         country_counts = df_filtered['country'].value_counts().reset_index()
         country_counts.columns = ['Country', 'Count']
         fig_country = px.bar(country_counts, x='Country', y='Count', title='Buyers by Country', color='Count', color_continuous_scale='Viridis')
-        st.plotly_chart(fig_country, use_container_width=True)
+        st.plotly_chart(fig_country, width='stretch')
     
     with col2:
         client_counts = df_filtered['client_type'].value_counts().reset_index()
         client_counts.columns = ['Client Type', 'Count']
         fig_client = px.bar(client_counts, x='Client Type', y='Count', title='Buyers by Client Type', color='Count', color_continuous_scale='Plasma')
-        st.plotly_chart(fig_client, use_container_width=True)
+        st.plotly_chart(fig_client, width='stretch')
     
     col1, col2 = st.columns(2)
     
@@ -331,19 +331,19 @@ elif page == "Dashboard":
         purpose_counts = df_filtered['acquisition_purpose'].value_counts().reset_index()
         purpose_counts.columns = ['Purpose', 'Count']
         fig_purpose = px.bar(purpose_counts, x='Purpose', y='Count', title='Acquisition Purpose', color='Count', color_continuous_scale='Tealgrn')
-        st.plotly_chart(fig_purpose, use_container_width=True)
+        st.plotly_chart(fig_purpose, width='stretch')
     
     with col2:
         fig_horizon = px.box(df_filtered, x='segment_name', y='investment_horizon_years', title='Investment Horizon by Segment', color='segment_name')
         fig_horizon.update_xaxes(tickangle=45)
-        st.plotly_chart(fig_horizon, use_container_width=True)
+        st.plotly_chart(fig_horizon, width='stretch')
     
     st.markdown("---")
     
     fig_scatter = px.scatter(df_filtered, x='annual_income', y='property_value', color='segment_name',
                             size='satisfaction_score', hover_data=['client_id', 'country'],
                             title='Income vs Property Value by Segment', color_discrete_sequence=px.colors.qualitative.Set1)
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    st.plotly_chart(fig_scatter, width='stretch')
     
     satisfaction_by_segment = df_filtered.groupby('segment_name')['satisfaction_score'].mean().reset_index()
     satisfaction_by_segment.columns = ['Segment', 'Avg Satisfaction']
@@ -351,7 +351,7 @@ elif page == "Dashboard":
     
     fig_satisfaction = px.bar(satisfaction_by_segment, x='Avg Satisfaction', y='Segment', orientation='h',
                               title='Average Satisfaction Score by Segment', color='Avg Satisfaction', color_continuous_scale='RdYlGn')
-    st.plotly_chart(fig_satisfaction, use_container_width=True)
+    st.plotly_chart(fig_satisfaction, width='stretch')
 
 
 # ===================== DATA PAGE =====================
@@ -372,7 +372,7 @@ elif page == "Data":
     df_formatted['budget_range'] = df_formatted['budget_range'].apply(lambda x: f"${x:,.0f}")
     df_formatted['satisfaction_score'] = df_formatted['satisfaction_score'].round(2)
     
-    st.dataframe(df_formatted, use_container_width=True, height=500)
+    st.dataframe(df_formatted, width='stretch', height=500)
     
     st.markdown(f"Showing {len(df_display)} of {len(df)} records")
     
