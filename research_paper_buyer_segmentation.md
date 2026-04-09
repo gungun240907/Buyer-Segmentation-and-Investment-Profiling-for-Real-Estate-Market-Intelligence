@@ -20,6 +20,8 @@ The real estate industry has witnessed unprecedented transformation in recent ye
 
 Traditional market segmentation approaches relying on demographic variables alone prove insufficient in capturing the multidimensional nature of buyer behavior in real estate markets. The integration of machine learning techniques offers a promising avenue to uncover hidden patterns and generate actionable insights from complex buyer datasets.
 
+The rapid expansion of data available to real estate companies—from client profiles and transaction histories to behavioral analytics and demographic trends—presents both an opportunity and a challenge. Without sophisticated analysis tools, this data remains underutilized. This research addresses this gap by developing an automated buyer segmentation system that transforms raw buyer data into strategic market intelligence.
+
 ### 1.2 Research Objectives
 
 This study aims to achieve the following objectives:
@@ -33,6 +35,31 @@ This study aims to achieve the following objectives:
 ### 1.3 Scope and Limitations
 
 The research focuses on buyer data encompassing client types (Individual, Corporate, Institutional, Foreign Investor, Real Estate Fund), acquisition purposes, geographic distribution, and various financial and behavioral attributes. The study is limited to the available synthetic dataset of 1,000 records, which may not fully represent the complete buyer population.
+
+### 1.4 Application Overview
+
+The developed solution is deployed as an interactive Streamlit web application that provides real-time market intelligence through intuitive visualizations. The application includes four main sections:
+
+- **Home Page**: Overview dashboard displaying key metrics including total buyer count, optimal cluster configuration, and segment distribution
+- **Analysis Page**: Cluster optimization using Elbow Method and Silhouette Score analysis, PCA visualization, and detailed cluster profiles
+- **Dashboard Page**: Interactive filtering by country, segment, and client type with real-time KPI updates and visualizations
+- **Data Page**: Searchable buyer database with export capabilities
+
+![Home Page Dashboard](screenshots/home_dashboard.png)
+
+*Figure 1: Home page showing buyer segment overview and key performance indicators*
+
+![Analysis Page](screenshots/analysis_page.png)
+
+*Figure 2: Analysis page displaying cluster optimization metrics*
+
+![Interactive Dashboard](screenshots/dashboard_page.png)
+
+*Figure 3: Interactive dashboard with filtering capabilities*
+
+![Data Page](screenshots/data_page.png)
+
+*Figure 4: Data exploration page with search and export features*
 
 ---
 
